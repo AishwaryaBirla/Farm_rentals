@@ -3,6 +3,7 @@ import axios from 'axios';
 import {FormGroup, Label, Input, Form, FormText, Button} from 'reactstrap'
 //import DatePicker from 'react-datepicker';
 import "./FarmerRegistration.css";
+import MyNavbar from './../MyNavbar/MyNavbar';
 
 export default class FarmerRegistration extends Component {
   constructor(props) {
@@ -147,6 +148,7 @@ export default class FarmerRegistration extends Component {
   render() {
     return (
         <>
+        <MyNavbar />
         <div className="register_background">
             
             <Form className="register_us" onSubmit={this.onSubmit}>
