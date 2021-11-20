@@ -1,12 +1,10 @@
 /** @format */
 
 import React, { Component } from "react";
-import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
-import { FormGroup, Label, Input, Form, FormText, Button } from "reactstrap";
 import axios from "axios";
+import { FormGroup, Label, Input, Form, FormText, Button } from "reactstrap";
 //import DatePicker from 'react-datepicker';
 import "./Login.css";
-import MyNavbar from './../MyNavbar/MyNavbar';
 
 export default class Login extends Component {
   constructor(props) {
@@ -16,19 +14,38 @@ export default class Login extends Component {
     this.onChangePassword = this.onChangePassword.bind(this);
     this.onChangeRegistrationType = this.onChangeRegistrationType.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.loginUser = this.loginUser.bind(this);
 
     this.state = {
       user: "",
       password: "",
       registrationType: "Farmer",
+      msg: <span className="small"></span>,
     };
   }
+
+  //   componentDidMount() {
+  //     axios.get('http://localhost:5000/farmerRegistration/')
+  //       .then(response => {
+  //         if (response.data.length > 0) {
+  //           this.setState({
+  //             users: response.data.map(user => user.username),
+  //             username: response.data[0].username
+  //           })
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       })
+
+  //   }
 
   onChangeUser(e) {
     this.setState({
       user: e.target.value,
     });
   }
+
   onChangePassword(e) {
     this.setState({
       password: e.target.value,
@@ -38,51 +55,48 @@ export default class Login extends Component {
     this.setState({
       registrationType: e.target.value,
     });
+    // if (this.state.password===this.state.confirmPassword){
+    //   this.setState({msg:(<span className="small text-success">Password Matches!</span>)})
+    // }
+    // else{
+    //   this.setState({msg:(<span className="small text-danger">Password does not Matches!</span>)})
+    // }
   }
-
   onSubmit(e) {
     e.preventDefault();
 
-    const login = {
+    const userdetails = {
       user: this.state.user,
       password: this.state.password,
       registrationType: this.state.registrationType,
     };
-
-    console.log(login);
-
-    axios
-      .post("http://localhost:5000/login/login", login)
-      .then((response) => {
-        console.log(response);
-        window.location='/';
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    //console.log(response);
+    this.loginUser(userdetails);
+    console.log("ok");
   }
+
+  async loginUser(users) {
+   await axios.post("http://localhost:5000/login/login", users) 
+    .then( response=>{ console.log(response); window.location='/equipmentList';})
+    .catch(err=>{console.log(err);});
+  }
+      
+  
 
   render() {
     return (
-<<<<<<< HEAD
       <>
-=======
-        <>
-      <MyNavbar />
->>>>>>> c396d281521b6beb55f10ff397a1ce865757a20c
         <div className="register_background">
           <Form className="register_us" onSubmit={this.onSubmit}>
-            <h3 className="text-center">Login</h3>
+            <h3 className="text-center">LOGIN</h3>
 
             <FormGroup>
-              <Label for="name">Phone number or Email</Label>
+              <Label for="name">Email</Label>
               <Input
                 id="name"
                 name="user"
-                placeholder="Enter phone number or email "
+                placeholder=""
                 type="text"
-                //value={this.state.fullname}
+                //value={this.state.name}
                 onChange={this.onChangeUser}
               />
             </FormGroup>
@@ -91,17 +105,19 @@ export default class Login extends Component {
               <Input
                 id="examplePassword"
                 name="password"
-                placeholder="Enter Password"
+                placeholder=""
                 type="password"
-                //value={this.state.password}
+                // value={this.state.password}
                 onChange={this.onChangePassword}
               />
             </FormGroup>
+
             <FormGroup>
-              <Label for="exampleSelect">Registration type</Label>
+              <br />
+              <Label for="exampleSelect">Registration Type</Label>
               <Input
                 id="exampleSelect"
-                name="registrationType"
+                name="registrstionType"
                 type="select"
                 value={this.state.registrationType}
                 onChange={this.onChangeRegistrationType}
@@ -115,7 +131,7 @@ export default class Login extends Component {
               type="submit"
               value="Login"
               className="btn btn-primary"
-              onSubmit={this.onSubmit}
+              onClick={this.onSubmit}
             />
           </Form>
         </div>
