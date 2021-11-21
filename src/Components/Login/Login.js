@@ -72,7 +72,7 @@ export default class Login extends Component {
       registrationType: this.state.registrationType,
     };
     this.loginUser(userdetails);
-    console.log("ok");
+    
   }
 
   async loginUser(users) {

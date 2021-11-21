@@ -9,6 +9,7 @@ let LessorRegistration = require("../models/lessorSignup.models");
 
 router.route("/login").post((req,res)=>{
   console.log(req.body.registrationType);
+  
   if (req.body.registrationType === "Farmer"){
     FarmerRegistration.findOne({email:req.body.user},function(err,doc){
       if (err){
@@ -23,9 +24,12 @@ router.route("/login").post((req,res)=>{
           else{
             //console.log('true');
             res.json(doc.fullname);
+            req.session.user=doc._id;
+           // const docs=FarmerRegistration.findById(req.session.user);
+            console.log(req.session.user);
           }
         })
-        console.log(doc.fullname);
+        //console.log(doc.fullname);
       }
     });
   }
@@ -45,7 +49,7 @@ router.route("/login").post((req,res)=>{
             res.sendStatus(200);
           }
         })
-        console.log(doc)
+        //console.log(doc)
       }
     });
 

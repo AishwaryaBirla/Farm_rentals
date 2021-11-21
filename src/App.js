@@ -8,7 +8,6 @@ import EquipmentById from './Components/EquipmentById/EquipmentById';
 import ContactUs from './Components/ContactUs/ContactUs';
 import FarmerRegistration from './Components/FarmerRegistration/FarmerRegistration';
 import LessorRegistration from './Components/LessorRegistration/LessorRegistration';
-
 import AddVehicle from './Components/AddVehicle/AddVehicle';
 import './App.css';
 

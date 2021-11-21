@@ -10,9 +10,9 @@ const vehicleSchema = new Schema({
   purchaseDate:{type:Date, required: true},
   price:{type: Number, required: true},
   vin:{type: String, required: true, length: 12},
-  images:{type: String, required: true},
-  reciept:{type: String, required: true},
-  insurace:{type: String, required: true},
+  //images:{type: String, required: true},
+  // reciept:{type: String, required: true},
+  // insurace:{type: String, required: true},
 });
 
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);
