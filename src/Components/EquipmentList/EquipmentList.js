@@ -1,7 +1,7 @@
 import React from 'react';
 import ToolsNavbar from './../toolsNavbar/ToolsNavbar';
 import {CardGroup, Card, CardTitle} from 'reactstrap';
-import EquipListCarousel from './EquipListCarousel';
+import EquipListCarousel from './EquipmentListCarousel';
 import './EquipmentList.css';
 const EquipmentList = () => {
     return (
